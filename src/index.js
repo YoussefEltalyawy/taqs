@@ -9,7 +9,7 @@ async function getWeather() {
   const location = getLocation();
   try {
     const response = await fetch(
-      `https://api.weatherapi.com/v1/current.json?key=b40bbce6ac554f4fbf1142551240203&q=${location}`,
+      `https://api.weatherapi.com/v1/forecast.json?key=b40bbce6ac554f4fbf1142551240203&q=${location}`,
       { mode: "cors" }
     );
     const weatherDataJson = await response.json();
@@ -21,6 +21,10 @@ async function getWeather() {
       weatherData.temp,
       weatherData.condition,
       weatherData.conditionIcon,
+      weatherData.morningTemp,
+      weatherData.afternoonTemp,
+      weatherData.eveningTemp,
+      weatherData.nightTemp,
     );
   } catch (error) {
     console.log(error);
@@ -41,9 +45,13 @@ function formatWeatherJson(weatherDataJson) {
     humidity: weatherDataJson.current.humidity,
     visibility: weatherDataJson.current.vis_km,
     feelslike: weatherDataJson.current.feelslike_c,
+    morningTemp: weatherDataJson.forecast.forecastday[0].hour[6].temp_c,
+    afternoonTemp: weatherDataJson.forecast.forecastday[0].hour[12].temp_c,
+    eveningTemp: weatherDataJson.forecast.forecastday[0].hour[18].temp_c,
+    nightTemp: weatherDataJson.forecast.forecastday[0].hour[21].temp_c,
   };
   switch (
-    true // We use a constant true expression here
+    true
   ) {
     case conditionText.toLowerCase().includes("cloud"):
       console.log("Cloudy condition");
