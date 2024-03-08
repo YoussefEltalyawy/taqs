@@ -9,7 +9,7 @@ async function getWeather() {
   const location = getLocation();
   try {
     const response = await fetch(
-      `https://api.weatherapi.com/v1/forecast.json?key=b40bbce6ac554f4fbf1142551240203&q=${location}`,
+      `https://api.weatherapi.com/v1/forecast.json?key=b40bbce6ac554f4fbf1142551240203&q=${location}&days=7`,
       { mode: "cors" }
     );
     const weatherDataJson = await response.json();
@@ -27,29 +27,33 @@ async function getWeather() {
       weatherData.nightTemp
     );
     const canvas = document.getElementById("temp-chart").getContext("2d");
-    const labels = ["", "", "", "",];
+    const labels = ["", "", "", ""];
     const data = {
       labels,
       datasets: [
         {
           label: "Temperature (°C)",
-          tension: .5,
+          tension: 0.5,
           pointStyle: "circle",
-          data: [weatherData.morningTemp, weatherData.afternoonTemp, weatherData.eveningTemp, weatherData.nightTemp,],
+          data: [
+            weatherData.morningTemp,
+            weatherData.afternoonTemp,
+            weatherData.eveningTemp,
+            weatherData.nightTemp,
+          ],
           borderColor: "#bf8000", // Red line
         },
-        
       ],
     };
     const myChart = new Chart(canvas, {
-      type: 'line', // Specify the chart type (line in this case)
+      type: "line", // Specify the chart type (line in this case)
       data: data,
       options: {
         scales: {
           x: {
             grid: {
-              display: false
-            }
+              display: false,
+            },
           },
           y: {
             grid: {
@@ -57,18 +61,17 @@ async function getWeather() {
               // drawOnChartArea: false
             },
             ticks: {
-              display: false
-            }
-          }
+              display: false,
+            },
+          },
         },
         plugins: {
           legend: {
-            display: false
-          }
-        }
-      }
+            display: false,
+          },
+        },
+      },
     });
-    
   } catch (error) {
     console.log(error);
   }

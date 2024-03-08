@@ -13,42 +13,44 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
+    <aside>
+      <h1 id="name">Name</h1>
+      <h3 id="region">Region</h3>
+      <h3 id="country">country</h3>
+      <img id="condition-icon" src="#" alt="condition">
+      <div class="weather-description">
+        <h1 id="temp">Temp</h1>
+        <h2 id="condition-text">condition</h2>
+      </div>
+      <hr>
+      <div class="hourly-forecast">
+        <h3>Temprature:</h3>
+        <div class="chart-container">
+          <canvas id="temp-chart"></canvas>
+        </div>
+        <div class="daily-temps-container">
+          <div class="daily-temp-card">
+            <h4>Morning</h4>
+            <p id="morning-temp">C</p>
+          </div>
+          <div class="daily-temp-card">
+            <h4>Afternoon</h4>
+            <p id="afternoon-temp">C</p>
+          </div>
+          <div class="daily-temp-card">
+            <h4>Evening</h4>
+            <p id="evening-temp">C</p>
+          </div>
+          <div class="daily-temp-card">
+            <h4>Night</h4>
+            <p id="night-temp">C</p>
+          </div>
+        </div>
+      </div>
+      <button class="search-btn">Search Location</button>
+    </aside>
     <main>
-      <aside>
-        <h1 id="name">Name</h1>
-        <h3 id="region">Region</h3>
-        <h3 id="country">country</h3>
-        <img id="condition-icon" src="#" alt="condition">
-        <div class="weather-description">
-          <h1 id="temp">Temp</h1>
-          <h2 id="condition-text">condition</h2>
-        </div>
-        <hr>
-        <div class="hourly-forecast">
-          <h3>Temprature:</h3>
-          <div class="chart-container">
-            <canvas id="temp-chart"></canvas>
-          </div>
-          <div class="daily-temps-container">
-            <div class="daily-temp-card">
-              <h4>Morning</h4>
-              <p id="morning-temp">C</p>
-            </div>
-            <div class="daily-temp-card">
-              <h4>Afternoon</h4>
-              <p id="afternoon-temp">C</p>
-            </div>
-            <div class="daily-temp-card">
-              <h4>Evening</h4>
-              <p id="evening-temp">C</p>
-            </div>
-            <div class="daily-temp-card">
-              <h4>Night</h4>
-              <p id="night-temp">C</p>
-            </div>
-          </div>
-        </div>
-      </aside>
+      <h1 class="date">Date</h1>
     </main>
   </body>
 </html>
