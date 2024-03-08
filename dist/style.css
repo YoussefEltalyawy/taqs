@@ -20,7 +20,7 @@ body {
 aside {
   height: 100%;
   position: fixed;
-  width: 25%;
+  width: 30%;
   top: 0;
   left: 0;
   border-right: 2px var(--translucent-color) solid;
@@ -67,7 +67,8 @@ hr {
   background-color: var(--secondary-color);
   border-radius: 10px;
   margin-right: 2rem;
-  height: 15rem;
+  height: 25rem;
+  align-items: center;
 }
 .graph-container {
   width: 100%;
@@ -79,6 +80,7 @@ hr {
 
 .daily-temps-container {
   display: flex;
+  justify-content: space-between;
 }
 
 .daily-temp-card {

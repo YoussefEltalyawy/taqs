@@ -24,8 +24,51 @@ async function getWeather() {
       weatherData.morningTemp,
       weatherData.afternoonTemp,
       weatherData.eveningTemp,
-      weatherData.nightTemp,
+      weatherData.nightTemp
     );
+    const canvas = document.getElementById("temp-chart").getContext("2d");
+    const labels = ["", "", "", "",];
+    const data = {
+      labels,
+      datasets: [
+        {
+          label: "Temperature (°C)",
+          tension: .5,
+          pointStyle: "circle",
+          data: [weatherData.morningTemp, weatherData.afternoonTemp, weatherData.eveningTemp, weatherData.nightTemp,],
+          borderColor: "#bf8000", // Red line
+        },
+        
+      ],
+    };
+    const myChart = new Chart(canvas, {
+      type: 'line', // Specify the chart type (line in this case)
+      data: data,
+      options: {
+        scales: {
+          x: {
+            grid: {
+              display: false
+            }
+          },
+          y: {
+            grid: {
+              display: false,
+              // drawOnChartArea: false
+            },
+            ticks: {
+              display: false
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            display: false
+          }
+        }
+      }
+    });
+    
   } catch (error) {
     console.log(error);
   }
@@ -50,26 +93,27 @@ function formatWeatherJson(weatherDataJson) {
     eveningTemp: weatherDataJson.forecast.forecastday[0].hour[18].temp_c,
     nightTemp: weatherDataJson.forecast.forecastday[0].hour[21].temp_c,
   };
-  switch (
-    true
-  ) {
+  switch (true) {
     case conditionText.toLowerCase().includes("cloud"):
       console.log("Cloudy condition");
-      weatherData.conditionIcon = "https://img.icons8.com/3d-fluency/188/private-cloud-storage"
+      weatherData.conditionIcon =
+        "https://img.icons8.com/3d-fluency/188/private-cloud-storage";
       break;
     case conditionText.toLowerCase().includes("rain"):
-      weatherData.conditionIcon = "https://img.icons8.com/3d-fluency/188/storm"
+      weatherData.conditionIcon = "https://img.icons8.com/3d-fluency/188/storm";
       console.log("Rain condition");
       break;
     case conditionText.toLowerCase().includes("snow"):
-      weatherData.conditionIcon = "https://img.icons8.com/3d-fluency/188/snow"
+      weatherData.conditionIcon = "https://img.icons8.com/3d-fluency/188/snow";
       console.log("Snow condition");
       break;
     case conditionText.toLowerCase().includes("sun"):
       console.log("Sun condition");
-      weatherData.conditionIcon = "https://img.icons8.com/3d-fluency/188/sun.png";
+      weatherData.conditionIcon =
+        "https://img.icons8.com/3d-fluency/188/sun.png";
     default:
-      weatherData.conditionIcon = "https://img.icons8.com/3d-fluency/188/sun.png";
+      weatherData.conditionIcon =
+        "https://img.icons8.com/3d-fluency/188/sun.png";
   }
   return weatherData;
 }
