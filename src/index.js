@@ -1,4 +1,5 @@
 import { updateUi } from "./ui";
+import { updateHourlyGraph } from "./ui";
 
 function getLocation() {
   const location = prompt("Please enter your location:");
@@ -9,7 +10,7 @@ async function getWeather() {
   const location = getLocation();
   try {
     const response = await fetch(
-      `https://api.weatherapi.com/v1/forecast.json?key=b40bbce6ac554f4fbf1142551240203&q=${location}&days=7`,
+      `https://api.weatherapi.com/v1/forecast.json?key=b40bbce6ac554f4fbf1142551240203&q=${location}&days=9`,
       { mode: "cors" }
     );
     const weatherDataJson = await response.json();
@@ -26,52 +27,12 @@ async function getWeather() {
       weatherData.eveningTemp,
       weatherData.nightTemp
     );
-    const canvas = document.getElementById("temp-chart").getContext("2d");
-    const labels = ["", "", "", ""];
-    const data = {
-      labels,
-      datasets: [
-        {
-          label: "Temperature (°C)",
-          tension: 0.5,
-          pointStyle: "circle",
-          data: [
-            weatherData.morningTemp,
-            weatherData.afternoonTemp,
-            weatherData.eveningTemp,
-            weatherData.nightTemp,
-          ],
-          borderColor: "#bf8000", // Red line
-        },
-      ],
-    };
-    const myChart = new Chart(canvas, {
-      type: "line", // Specify the chart type (line in this case)
-      data: data,
-      options: {
-        scales: {
-          x: {
-            grid: {
-              display: false,
-            },
-          },
-          y: {
-            grid: {
-              display: false,
-              // drawOnChartArea: false
-            },
-            ticks: {
-              display: false,
-            },
-          },
-        },
-        plugins: {
-          legend: {
-            display: false,
-          },
-        },
-      },
-    });
+    updateHourlyGraph(
+      weatherData.morningTemp,
+      weatherData.afternoonTemp,
+      weatherData.eveningTemp,
+      weatherData.nightTemp
+    );
   } catch (error) {
     console.log(error);
   }
@@ -95,23 +56,33 @@ function formatWeatherJson(weatherDataJson) {
     afternoonTemp: weatherDataJson.forecast.forecastday[0].hour[12].temp_c,
     eveningTemp: weatherDataJson.forecast.forecastday[0].hour[18].temp_c,
     nightTemp: weatherDataJson.forecast.forecastday[0].hour[21].temp_c,
+    day1Date: weatherDataJson.forecast.forecastday[1].date,
+    day1Temp: weatherDataJson.forecast.forecastday[1].day.avgtemp_c,
+    day2Date: weatherDataJson.forecast.forecastday[2].date,
+    day2Temp: weatherDataJson.forecast.forecastday[2].day.avgtemp_c,
+    day3Date: weatherDataJson.forecast.forecastday[3].date,
+    day3Temp: weatherDataJson.forecast.forecastday[3].day.avgtemp_c,
+    day4Date: weatherDataJson.forecast.forecastday[4].date,
+    day4Temp: weatherDataJson.forecast.forecastday[4].day.avgtemp_c,
+    day5Date: weatherDataJson.forecast.forecastday[5].date,
+    day5Temp: weatherDataJson.forecast.forecastday[5].day.avgtemp_c,
+    day6Date: weatherDataJson.forecast.forecastday[6].date,
+    day6Temp: weatherDataJson.forecast.forecastday[6].day.avgtemp_c,
+    day7Date: weatherDataJson.forecast.forecastday[7].date,
+    day7Temp: weatherDataJson.forecast.forecastday[7].day.avgtemp_c,
   };
   switch (true) {
     case conditionText.toLowerCase().includes("cloud"):
-      console.log("Cloudy condition");
       weatherData.conditionIcon =
         "https://img.icons8.com/3d-fluency/188/private-cloud-storage";
       break;
     case conditionText.toLowerCase().includes("rain"):
       weatherData.conditionIcon = "https://img.icons8.com/3d-fluency/188/storm";
-      console.log("Rain condition");
       break;
     case conditionText.toLowerCase().includes("snow"):
       weatherData.conditionIcon = "https://img.icons8.com/3d-fluency/188/snow";
-      console.log("Snow condition");
       break;
     case conditionText.toLowerCase().includes("sun"):
-      console.log("Sun condition");
       weatherData.conditionIcon =
         "https://img.icons8.com/3d-fluency/188/sun.png";
     default:

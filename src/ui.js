@@ -22,7 +22,7 @@ export function updateUi(
   morningTemp,
   afternoonTemp,
   eveningTemp,
-  nightTemp,
+  nightTemp
 ) {
   nameEl.textContent = name;
   regionEl.textContent = `${region}, `;
@@ -35,11 +35,60 @@ export function updateUi(
   afternoonTempEl.textContent = afternoonTemp + "° C";
   eveningTempEl.textContent = eveningTemp + "° C";
   nightTempEl.textContent = nightTemp + "° C";
+
+  let date = new Date();
+  const day = date.toLocaleDateString("en-US", { weekday: "long" });
+  const month = date.toLocaleDateString("en-US", { month: "long" });
+  const year = date.getFullYear();
+  date = `${day}, ${month} ${date.getDate()}, ${year}`;
+  dateEl.textContent = date;
 }
 
-let date = new Date();
-const day = date.toLocaleDateString('en-US', { weekday: 'long' });
-const month = date.toLocaleDateString('en-US', { month: 'long' });
-const year = date.getFullYear();
-date = `${day}, ${month} ${date.getDate()}, ${year}`;
-dateEl.textContent = date
+export function updateHourlyGraph(
+  morningTemp,
+  afternoonTemp,
+  eveningTemp,
+  nightTemp
+) {
+  const canvas = document.getElementById("temp-chart").getContext("2d");
+  const labels = ["", "", "", ""];
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: "Temperature (°C)",
+        tension: 0.4,
+        pointStyle: "circle",
+        data: [morningTemp, afternoonTemp, eveningTemp, nightTemp],
+        borderColor: "#bf8000", // Red line
+      },
+    ],
+  };
+  const myChart = new Chart(canvas, {
+    type: "line", // Specify the chart type (line in this case)
+    data: data,
+    options: {
+      scales: {
+        x: {
+          grid: {
+            display: false,
+          },
+        },
+        y: {
+          grid: {
+            display: false,
+            // drawOnChartArea: false
+          },
+          ticks: {
+            display: false,
+          },
+        },
+      },
+      plugins: {
+        legend: {
+          display: false,
+        },
+      },
+    },
+  });
+}
