@@ -62,30 +62,37 @@ function formatWeatherJson(weatherDataJson) {
       0: {
         date: weatherDataJson.forecast.forecastday[1].date,
         temp: weatherDataJson.forecast.forecastday[1].day.avgtemp_c,
+        condition: weatherDataJson.forecast.forecastday[1].day.condition.text
       },
       1: {
         date: weatherDataJson.forecast.forecastday[2].date,
         temp: weatherDataJson.forecast.forecastday[2].day.avgtemp_c,
+        condition: weatherDataJson.forecast.forecastday[2].day.condition.text
       },
       2: {
         date: weatherDataJson.forecast.forecastday[3].date,
         temp: weatherDataJson.forecast.forecastday[3].day.avgtemp_c,
+        condition: weatherDataJson.forecast.forecastday[3].day.condition.text
       },
       3: {
         date: weatherDataJson.forecast.forecastday[4].date,
         temp: weatherDataJson.forecast.forecastday[4].day.avgtemp_c,
+        condition: weatherDataJson.forecast.forecastday[4].day.condition.text
       },
       4: {
         date: weatherDataJson.forecast.forecastday[5].date,
         temp: weatherDataJson.forecast.forecastday[5].day.avgtemp_c,
+        condition: weatherDataJson.forecast.forecastday[5].day.condition.text
       },
       5: {
         date: weatherDataJson.forecast.forecastday[6].date,
         temp: weatherDataJson.forecast.forecastday[6].day.avgtemp_c,
+        condition: weatherDataJson.forecast.forecastday[6].day.condition.text
       },
       6: {
         date: weatherDataJson.forecast.forecastday[7].date,
         temp: weatherDataJson.forecast.forecastday[7].day.avgtemp_c,
+        condition: weatherDataJson.forecast.forecastday[7].day.condition.text
       },
     },
   };

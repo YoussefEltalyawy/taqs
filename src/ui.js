@@ -96,11 +96,7 @@ export function updateHourlyGraph(
 }
 
 export function updateWeeklyForecast(weatherData) {
-  // dayEls.forEach((day) => {
-  //   console.log(dayEls[] + "here")
-  // })
-
-  for(let i = 0; i < dayEls.length; i++) {
+for(let i = 0; i < dayEls.length; i++) {
     const formatedDate = convertDateToText(weatherData.days[i].date)
     dayEls[i].textContent = formatedDate
   }
