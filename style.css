@@ -112,3 +112,15 @@ h4 {
   border: none;
   border-radius: 20px;
 }
+
+.days-forecast-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-right: 10rem;
+
+
+}
+.day-forecast-card {
+  background-color: var(--secondary-color);
+}
