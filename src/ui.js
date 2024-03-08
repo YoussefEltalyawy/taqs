@@ -12,6 +12,8 @@ const nightTempEl = document.querySelector("#night-temp");
 
 const dateEl = document.querySelector(".date");
 
+const dayEls = document.querySelectorAll(".day");
+
 export function updateUi(
   name,
   region,
@@ -92,3 +94,25 @@ export function updateHourlyGraph(
     },
   });
 }
+
+export function updateWeeklyForecast(weatherData) {
+  // dayEls.forEach((day) => {
+  //   console.log(dayEls[] + "here")
+  // })
+
+  for(let i = 0; i < dayEls.length; i++) {
+    const formatedDate = convertDateToText(weatherData.days[i].date)
+    dayEls[i].textContent = formatedDate
+  }
+}
+
+
+
+function convertDateToText(dateString) {
+  const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const dateObject = daysOfWeek[new Date(dateString).getDay()];
+  console.log(dateObject);
+  return dateObject;
+}
+
+// convertDateToText();

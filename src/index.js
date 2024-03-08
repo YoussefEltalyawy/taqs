@@ -1,5 +1,6 @@
 import { updateUi } from "./ui";
 import { updateHourlyGraph } from "./ui";
+import { updateWeeklyForecast } from "./ui";
 
 function getLocation() {
   const location = prompt("Please enter your location:");
@@ -33,6 +34,7 @@ async function getWeather() {
       weatherData.eveningTemp,
       weatherData.nightTemp
     );
+    updateWeeklyForecast(weatherData);
   } catch (error) {
     console.log(error);
   }
@@ -56,22 +58,46 @@ function formatWeatherJson(weatherDataJson) {
     afternoonTemp: weatherDataJson.forecast.forecastday[0].hour[12].temp_c,
     eveningTemp: weatherDataJson.forecast.forecastday[0].hour[18].temp_c,
     nightTemp: weatherDataJson.forecast.forecastday[0].hour[21].temp_c,
-    day1Date: weatherDataJson.forecast.forecastday[1].date,
-    day1Temp: weatherDataJson.forecast.forecastday[1].day.avgtemp_c,
-    day2Date: weatherDataJson.forecast.forecastday[2].date,
-    day2Temp: weatherDataJson.forecast.forecastday[2].day.avgtemp_c,
-    day3Date: weatherDataJson.forecast.forecastday[3].date,
-    day3Temp: weatherDataJson.forecast.forecastday[3].day.avgtemp_c,
-    day4Date: weatherDataJson.forecast.forecastday[4].date,
-    day4Temp: weatherDataJson.forecast.forecastday[4].day.avgtemp_c,
-    day5Date: weatherDataJson.forecast.forecastday[5].date,
-    day5Temp: weatherDataJson.forecast.forecastday[5].day.avgtemp_c,
-    day6Date: weatherDataJson.forecast.forecastday[6].date,
-    day6Temp: weatherDataJson.forecast.forecastday[6].day.avgtemp_c,
-    day7Date: weatherDataJson.forecast.forecastday[7].date,
-    day7Temp: weatherDataJson.forecast.forecastday[7].day.avgtemp_c,
+    days: {
+      0: {
+        date: weatherDataJson.forecast.forecastday[1].date,
+        temp: weatherDataJson.forecast.forecastday[1].day.avgtemp_c,
+      },
+      1: {
+        date: weatherDataJson.forecast.forecastday[2].date,
+        temp: weatherDataJson.forecast.forecastday[2].day.avgtemp_c,
+      },
+      2: {
+        date: weatherDataJson.forecast.forecastday[3].date,
+        temp: weatherDataJson.forecast.forecastday[3].day.avgtemp_c,
+      },
+      3: {
+        date: weatherDataJson.forecast.forecastday[4].date,
+        temp: weatherDataJson.forecast.forecastday[4].day.avgtemp_c,
+      },
+      4: {
+        date: weatherDataJson.forecast.forecastday[5].date,
+        temp: weatherDataJson.forecast.forecastday[5].day.avgtemp_c,
+      },
+      5: {
+        date: weatherDataJson.forecast.forecastday[6].date,
+        temp: weatherDataJson.forecast.forecastday[6].day.avgtemp_c,
+      },
+      6: {
+        date: weatherDataJson.forecast.forecastday[7].date,
+        temp: weatherDataJson.forecast.forecastday[7].day.avgtemp_c,
+      },
+    },
   };
   switch (true) {
+    case conditionText.toLowerCase().includes("clear"):
+      if (weatherData.isDay == 1) {
+        weatherData.conditionIcon = "https://img.icons8.com/3d-fluency/188/sun.png";
+      }
+      else {
+        weatherData.conditionIcon = "https://img.icons8.com/3d-fluency/188/moon-symbol.png";
+      }
+      break;
     case conditionText.toLowerCase().includes("cloud"):
       weatherData.conditionIcon =
         "https://img.icons8.com/3d-fluency/188/private-cloud-storage";
