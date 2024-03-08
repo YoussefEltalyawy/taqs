@@ -1,0 +1,68 @@
+:root {
+  --background-color: #101014;
+  --secondary-color: #1b1a1d;
+  --text-color: #ffff;
+  --translucent-color: #ffffff25;
+  --transluncet-text-color: #ffffffce;
+  --font: "Poppins";
+}
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: var(--font);
+}
+
+aside {
+  height: 100%;
+  position: fixed;
+  width: 25%;
+  top: 0;
+  left: 0;
+  border-right: 2px var(--translucent-color) solid;
+  margin-top: 2rem;
+  margin-left: 2rem;
+}
+
+h3 {
+  font-family: var(--font);
+  display: inline;
+  font-weight: 400;
+  color: var(--transluncet-text-color);
+}
+img {
+  width: 7.5rem;
+  height: 7.5rem;
+  margin-top: 10px;
+  display: block;
+}
+
+.weather-description {
+  display: flex;
+  justify-content: space-between;
+}
+
+h1#temp {
+  display: inline;
+  font-size: 3.5rem;
+}
+h2#condition-text {
+  display: inline;
+  margin: 2rem;
+  font-weight: 350;
+}
+hr {
+  margin-top: 2rem;
+  margin-right: 2rem;
+  margin-bottom: 2rem;
+  color: var(--translucent-color);
+}
+
+.hourly-forecast {
+  background-color: var(--secondary-color);
+  border-radius: 7px;
+}
