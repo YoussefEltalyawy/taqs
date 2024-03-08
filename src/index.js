@@ -17,22 +17,11 @@ async function getWeather() {
     const weatherDataJson = await response.json();
     const weatherData = formatWeatherJson(weatherDataJson);
     updateUi(
-      weatherData.name,
-      weatherData.region,
-      weatherData.country,
-      weatherData.temp,
-      weatherData.condition,
-      weatherData.conditionIcon,
-      weatherData.morningTemp,
-      weatherData.afternoonTemp,
-      weatherData.eveningTemp,
-      weatherData.nightTemp
+      weatherDataJson.current.condition.text,
+      weatherData,
     );
     updateHourlyGraph(
-      weatherData.morningTemp,
-      weatherData.afternoonTemp,
-      weatherData.eveningTemp,
-      weatherData.nightTemp
+      weatherData
     );
     updateWeeklyForecast(weatherData);
   } catch (error) {
@@ -40,7 +29,6 @@ async function getWeather() {
   }
 }
 function formatWeatherJson(weatherDataJson) {
-  const conditionText = weatherDataJson.current.condition.text;
   const weatherData = {
     name: weatherDataJson.location.name,
     region: weatherDataJson.location.region,
@@ -96,32 +84,6 @@ function formatWeatherJson(weatherDataJson) {
       },
     },
   };
-  switch (true) {
-    case conditionText.toLowerCase().includes("clear"):
-      if (weatherData.isDay == 1) {
-        weatherData.conditionIcon = "https://img.icons8.com/3d-fluency/188/sun.png";
-      }
-      else {
-        weatherData.conditionIcon = "https://img.icons8.com/3d-fluency/188/moon-symbol.png";
-      }
-      break;
-    case conditionText.toLowerCase().includes("cloud"):
-      weatherData.conditionIcon =
-        "https://img.icons8.com/3d-fluency/188/private-cloud-storage";
-      break;
-    case conditionText.toLowerCase().includes("rain"):
-      weatherData.conditionIcon = "https://img.icons8.com/3d-fluency/188/storm";
-      break;
-    case conditionText.toLowerCase().includes("snow"):
-      weatherData.conditionIcon = "https://img.icons8.com/3d-fluency/188/snow";
-      break;
-    case conditionText.toLowerCase().includes("sun"):
-      weatherData.conditionIcon =
-        "https://img.icons8.com/3d-fluency/188/sun.png";
-    default:
-      weatherData.conditionIcon =
-        "https://img.icons8.com/3d-fluency/188/sun.png";
-  }
   return weatherData;
 }
 getWeather();

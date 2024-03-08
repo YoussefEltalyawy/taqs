@@ -15,28 +15,49 @@ const dateEl = document.querySelector(".date");
 const dayEls = document.querySelectorAll(".day");
 
 export function updateUi(
-  name,
-  region,
-  country,
-  temp,
-  conditionText,
-  conditionIcon,
-  morningTemp,
-  afternoonTemp,
-  eveningTemp,
-  nightTemp
+  conditionTextFore,
+  weatherData,
 ) {
-  nameEl.textContent = name;
-  regionEl.textContent = `${region}, `;
-  countryEl.textContent = country;
-  tempEl.textContent = temp + "° C";
-  conditionTextEl.textContent = conditionText;
-  condtiionIconEl.src = conditionIcon;
+  nameEl.textContent = weatherData.name;
+  regionEl.textContent = `${weatherData.region}, `;
+  countryEl.textContent = weatherData.country;
+  tempEl.textContent = weatherData.temp + "° C";
+  conditionTextEl.textContent = weatherData.condition;
 
-  morningTempEl.textContent = morningTemp + "° C";
-  afternoonTempEl.textContent = afternoonTemp + "° C";
-  eveningTempEl.textContent = eveningTemp + "° C";
-  nightTempEl.textContent = nightTemp + "° C";
+  switch (true) {
+    case conditionTextFore.toLowerCase().includes("clear"):
+      if (weatherData.isDay == 1) {
+        weatherData.conditionIcon =
+          "https://img.icons8.com/3d-fluency/188/sun.png";
+      } else {
+        weatherData.conditionIcon =
+          "https://img.icons8.com/3d-fluency/188/moon-symbol.png";
+      }
+      break;
+    case conditionTextFore.toLowerCase().includes("cloud"):
+      weatherData.conditionIcon =
+        "https://img.icons8.com/3d-fluency/188/private-cloud-storage";
+      break;
+    case conditionTextFore.toLowerCase().includes("rain"):
+      weatherData.conditionIcon = "https://img.icons8.com/3d-fluency/188/storm";
+      break;
+    case conditionTextFore.toLowerCase().includes("snow"):
+      weatherData.conditionIcon = "https://img.icons8.com/3d-fluency/188/snow";
+      break;
+    case conditionTextFore.toLowerCase().includes("sun"):
+      weatherData.conditionIcon =
+        "https://img.icons8.com/3d-fluency/188/sun.png";
+    default:
+      weatherData.conditionIcon =
+        "https://img.icons8.com/3d-fluency/188/sun.png";
+  }
+
+  condtiionIconEl.src = weatherData.conditionIcon;
+
+  morningTempEl.textContent = weatherData.morningTemp + "° C";
+  afternoonTempEl.textContent = weatherData.afternoonTemp + "° C";
+  eveningTempEl.textContent = weatherData.eveningTemp + "° C";
+  nightTempEl.textContent = weatherData.nightTemp + "° C";
 
   let date = new Date();
   const day = date.toLocaleDateString("en-US", { weekday: "long" });
@@ -44,13 +65,11 @@ export function updateUi(
   const year = date.getFullYear();
   date = `${day}, ${month} ${date.getDate()}, ${year}`;
   dateEl.textContent = date;
+  console.log(conditionTextFore);
 }
 
 export function updateHourlyGraph(
-  morningTemp,
-  afternoonTemp,
-  eveningTemp,
-  nightTemp
+  weatherData
 ) {
   const canvas = document.getElementById("temp-chart").getContext("2d");
   const labels = ["", "", "", ""];
@@ -61,7 +80,7 @@ export function updateHourlyGraph(
         label: "Temperature (°C)",
         tension: 0.4,
         pointStyle: "circle",
-        data: [morningTemp, afternoonTemp, eveningTemp, nightTemp],
+        data: [weatherData.morningTemp, weatherData.afternoonTemp, weatherData.eveningTemp, weatherData.nightTemp],
         borderColor: "#bf8000", // Red line
       },
     ],
@@ -96,16 +115,22 @@ export function updateHourlyGraph(
 }
 
 export function updateWeeklyForecast(weatherData) {
-for(let i = 0; i < dayEls.length; i++) {
-    const formatedDate = convertDateToText(weatherData.days[i].date)
-    dayEls[i].textContent = formatedDate
+  for (let i = 0; i < dayEls.length; i++) {
+    const formatedDate = convertDateToText(weatherData.days[i].date);
+    dayEls[i].textContent = formatedDate;
   }
 }
 
-
-
 function convertDateToText(dateString) {
-  const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const daysOfWeek = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
   const dateObject = daysOfWeek[new Date(dateString).getDay()];
   console.log(dateObject);
   return dateObject;
