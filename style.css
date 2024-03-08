@@ -114,12 +114,11 @@ h4 {
 }
 
 .days-forecast-container {
+  margin-top: 1rem;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   margin-right: 10rem;
-
-
 }
 .day-forecast-card {
   display: flex;
@@ -128,6 +127,7 @@ h4 {
   padding: 1.5rem;
   border-radius: 20px;
   background-color: var(--secondary-color);
+  margin-left: 1rem;
 }
 .weekly-icon {
   width: 5rem;
