@@ -17,7 +17,6 @@ async function getWeather() {
     const weatherDataJson = await response.json();
     const weatherData = formatWeatherJson(weatherDataJson);
     updateUi(
-      weatherDataJson.current.condition.text,
       weatherData,
     );
     updateHourlyGraph(
@@ -50,37 +49,44 @@ function formatWeatherJson(weatherDataJson) {
       0: {
         date: weatherDataJson.forecast.forecastday[1].date,
         temp: weatherDataJson.forecast.forecastday[1].day.avgtemp_c,
-        condition: weatherDataJson.forecast.forecastday[1].day.condition.text
+        condition: weatherDataJson.forecast.forecastday[1].day.condition.text,
+        conditionIcon: null,
       },
       1: {
         date: weatherDataJson.forecast.forecastday[2].date,
         temp: weatherDataJson.forecast.forecastday[2].day.avgtemp_c,
-        condition: weatherDataJson.forecast.forecastday[2].day.condition.text
+        condition: weatherDataJson.forecast.forecastday[2].day.condition.text,
+        conditionIcon: null,
       },
       2: {
         date: weatherDataJson.forecast.forecastday[3].date,
         temp: weatherDataJson.forecast.forecastday[3].day.avgtemp_c,
-        condition: weatherDataJson.forecast.forecastday[3].day.condition.text
+        condition: weatherDataJson.forecast.forecastday[3].day.condition.text,
+        conditionIcon: null,
       },
       3: {
         date: weatherDataJson.forecast.forecastday[4].date,
         temp: weatherDataJson.forecast.forecastday[4].day.avgtemp_c,
-        condition: weatherDataJson.forecast.forecastday[4].day.condition.text
+        condition: weatherDataJson.forecast.forecastday[4].day.condition.text,
+        conditionIcon: null,
       },
       4: {
         date: weatherDataJson.forecast.forecastday[5].date,
         temp: weatherDataJson.forecast.forecastday[5].day.avgtemp_c,
-        condition: weatherDataJson.forecast.forecastday[5].day.condition.text
+        condition: weatherDataJson.forecast.forecastday[5].day.condition.text,
+        conditionIcon: null,
       },
       5: {
         date: weatherDataJson.forecast.forecastday[6].date,
         temp: weatherDataJson.forecast.forecastday[6].day.avgtemp_c,
-        condition: weatherDataJson.forecast.forecastday[6].day.condition.text
+        condition: weatherDataJson.forecast.forecastday[6].day.condition.text,
+        conditionIcon: null,
       },
       6: {
         date: weatherDataJson.forecast.forecastday[7].date,
         temp: weatherDataJson.forecast.forecastday[7].day.avgtemp_c,
-        condition: weatherDataJson.forecast.forecastday[7].day.condition.text
+        condition: weatherDataJson.forecast.forecastday[7].day.condition.text,
+        conditionIcon: null,
       },
     },
   };

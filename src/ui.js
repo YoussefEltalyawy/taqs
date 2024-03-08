@@ -14,8 +14,9 @@ const dateEl = document.querySelector(".date");
 
 const dayEls = document.querySelectorAll(".day");
 
+const weeklyIcons = document.querySelectorAll(".weekly-icon");
+
 export function updateUi(
-  conditionTextFore,
   weatherData,
 ) {
   nameEl.textContent = weatherData.name;
@@ -25,7 +26,7 @@ export function updateUi(
   conditionTextEl.textContent = weatherData.condition;
 
   switch (true) {
-    case conditionTextFore.toLowerCase().includes("clear"):
+    case weatherData.condition.toLowerCase().includes("clear"):
       if (weatherData.isDay == 1) {
         weatherData.conditionIcon =
           "https://img.icons8.com/3d-fluency/188/sun.png";
@@ -34,17 +35,17 @@ export function updateUi(
           "https://img.icons8.com/3d-fluency/188/moon-symbol.png";
       }
       break;
-    case conditionTextFore.toLowerCase().includes("cloud"):
+    case weatherData.condition.toLowerCase().includes("cloud"):
       weatherData.conditionIcon =
         "https://img.icons8.com/3d-fluency/188/private-cloud-storage";
       break;
-    case conditionTextFore.toLowerCase().includes("rain"):
+    case weatherData.condition.toLowerCase().includes("rain"):
       weatherData.conditionIcon = "https://img.icons8.com/3d-fluency/188/storm";
       break;
-    case conditionTextFore.toLowerCase().includes("snow"):
+    case weatherData.condition.toLowerCase().includes("snow"):
       weatherData.conditionIcon = "https://img.icons8.com/3d-fluency/188/snow";
       break;
-    case conditionTextFore.toLowerCase().includes("sun"):
+    case weatherData.condition.toLowerCase().includes("sun"):
       weatherData.conditionIcon =
         "https://img.icons8.com/3d-fluency/188/sun.png";
     default:
@@ -65,7 +66,6 @@ export function updateUi(
   const year = date.getFullYear();
   date = `${day}, ${month} ${date.getDate()}, ${year}`;
   dateEl.textContent = date;
-  console.log(conditionTextFore);
 }
 
 export function updateHourlyGraph(
@@ -118,6 +118,36 @@ export function updateWeeklyForecast(weatherData) {
   for (let i = 0; i < dayEls.length; i++) {
     const formatedDate = convertDateToText(weatherData.days[i].date);
     dayEls[i].textContent = formatedDate;
+
+    switch (true) {
+      case weatherData.days[i].condition.toLowerCase().includes("clear"):
+        if (weatherData.isDay == 1) {
+          weatherData.days[i].conditionIcon =
+            "https://img.icons8.com/3d-fluency/188/sun.png";
+        } else {
+          weatherData.days[i].conditionIcon =
+            "https://img.icons8.com/3d-fluency/188/moon-symbol.png";
+        }
+        break;
+      case weatherData.days[i].condition.includes("cloud"):
+        weatherData.conditionIcon =
+          "https://img.icons8.com/3d-fluency/188/private-cloud-storage";
+        break;
+      case weatherData.days[i].condition.toLowerCase().includes("rain"):
+        weatherData.days[i].conditionIcon = "https://img.icons8.com/3d-fluency/188/storm";
+        break;
+      case weatherData.days[i].condition.toLowerCase().includes("snow"):
+        weatherData.days[i].conditionIcon = "https://img.icons8.com/3d-fluency/188/snow";
+        break;
+      case weatherData.days[i].condition.toLowerCase().includes("sun"):
+        weatherData.days[i].conditionIcon =
+          "https://img.icons8.com/3d-fluency/188/sun.png";
+      default:
+        weatherData.days[i].conditionIcon =
+          "https://img.icons8.com/3d-fluency/188/sun.png";
+    }
+    weeklyIcons[i].src = weatherData.days[i].conditionIcon
+
   }
 }
 
@@ -135,5 +165,3 @@ function convertDateToText(dateString) {
   console.log(dateObject);
   return dateObject;
 }
-
-// convertDateToText();
