@@ -16,6 +16,8 @@ const dayEls = document.querySelectorAll(".day");
 
 const weeklyIcons = document.querySelectorAll(".weekly-icon");
 
+const weeklyTemps = document.querySelectorAll(".weekly-temp");
+
 export function updateUi(
   weatherData,
 ) {
@@ -147,19 +149,19 @@ export function updateWeeklyForecast(weatherData) {
           "https://img.icons8.com/3d-fluency/188/sun.png";
     }
     weeklyIcons[i].src = weatherData.days[i].conditionIcon
-
+    weeklyTemps[i].textContent = weatherData.days[i].temp + "°";
   }
 }
 
 function convertDateToText(dateString) {
   const daysOfWeek = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
   ];
   const dateObject = daysOfWeek[new Date(dateString).getDay()];
   console.log(dateObject);
