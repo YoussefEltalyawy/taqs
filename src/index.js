@@ -37,6 +37,8 @@ function formatWeatherJson(weatherDataJson) {
     condition: weatherDataJson.current.condition.text,
     conditionIcon: null,
     windSpeed: weatherDataJson.current.wind_kph,
+    windDegree: weatherDataJson.current.wind_degree,
+    windDir: weatherDataJson.current.wind_dir,
     uv: weatherDataJson.current.uv,
     humidity: weatherDataJson.current.humidity,
     visibility: weatherDataJson.current.vis_km,

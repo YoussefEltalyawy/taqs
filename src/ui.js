@@ -11,12 +11,13 @@ const eveningTempEl = document.querySelector("#evening-temp");
 const nightTempEl = document.querySelector("#night-temp");
 
 const dateEl = document.querySelector(".date");
-
 const dayEls = document.querySelectorAll(".day");
 
 const weeklyIcons = document.querySelectorAll(".weekly-icon");
-
 const weeklyTemps = document.querySelectorAll(".weekly-temp");
+
+const windSpeed = document.querySelector("#wind-speed")
+const windDegreeAndDir = document.querySelector("#degree-dir");
 
 export function updateUi(
   weatherData,
@@ -68,6 +69,11 @@ export function updateUi(
   const year = date.getFullYear();
   date = `${day}, ${month} ${date.getDate()}, ${year}`;
   dateEl.textContent = date;
+  
+  console.log(weatherData.windSpeed)
+  windSpeed.textContent = weatherData.windSpeed + " km/h";
+  windDegreeAndDir.textContent = weatherData.windDegree + "°" + weatherData.windDir
+  console.log(windSpeed)
 }
 
 export function updateHourlyGraph(
