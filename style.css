@@ -41,8 +41,9 @@ main {
 h3 {
   font-family: var(--font);
   display: inline;
-  font-weight: 400;
+  font-weight: 300;
   color: var(--transluncet-text-color);
+  font-size: 1.5rem;
 }
 img {
   width: 7.5rem;
@@ -75,9 +76,9 @@ hr {
 .hourly-forecast {
   padding: 1rem;
   background-color: var(--secondary-color);
-  border-radius: 10px;
+  border-radius: 20px;
   margin-right: 2rem;
-  height: 25rem;
+  height: 26rem;
   align-items: center;
 }
 .graph-container {
@@ -143,4 +144,26 @@ h4 {
 main h2 {
   font-size: 2rem;
   font-weight: 400;
+  margin-top: .7rem;
+}
+
+.wind-status-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--secondary-color);
+  width: 25rem;
+  height: 15rem;
+  padding-top: 1rem;
+  padding-left: 1.5rem;
+  border-radius: 20px;
+}
+
+#wind-speed {
+  position: absolute;
+  bottom: 1rem;
+}
+
+#degree-dir {
+  font-size: 5rem;
 }
