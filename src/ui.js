@@ -19,6 +19,8 @@ const weeklyTemps = document.querySelectorAll(".weekly-temp");
 const windSpeed = document.querySelector("#wind-speed")
 const windDegreeAndDir = document.querySelector("#degree-dir");
 
+const uvIndexP = document.querySelector("#uv-index");
+
 export function updateUi(
   weatherData,
 ) {
@@ -70,10 +72,10 @@ export function updateUi(
   date = `${day}, ${month} ${date.getDate()}, ${year}`;
   dateEl.textContent = date;
   
-  console.log(weatherData.windSpeed)
   windSpeed.textContent = weatherData.windSpeed + " km/h";
   windDegreeAndDir.textContent = weatherData.windDegree + "°" + weatherData.windDir
-  console.log(windSpeed)
+
+  uvIndexP.textContent = weatherData.uv + " UV"
 }
 
 export function updateHourlyGraph(
