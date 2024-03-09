@@ -11,19 +11,23 @@
       @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="icon" type="image/x-icon" href="https://img.icons8.com/3d-fluency/188/private-cloud-storage">
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://img.icons8.com/3d-fluency/188/private-cloud-storage"
+    />
   </head>
   <body>
     <aside>
       <h1 id="name">Name</h1>
       <h3 id="region">Region</h3>
       <h3 id="country">country</h3>
-      <img id="condition-icon" src="#" alt="condition">
+      <img id="condition-icon" src="#" alt="condition" />
       <div class="weather-description">
         <h1 id="temp">Temp</h1>
         <h2 id="condition-text">condition</h2>
       </div>
-      <hr>
+      <hr />
       <div class="hourly-forecast">
         <h3>Temprature</h3>
         <div class="chart-container">
@@ -56,47 +60,47 @@
       <div class="days-forecast-container">
         <div class="day-forecast-card">
           <p id="day0" class="day">Day1</p>
-          <img src="#" class="weekly-icon">
+          <img src="#" class="weekly-icon" />
           <p class="weekly-temp">Temp</p>
         </div>
         <div class="day-forecast-card">
           <p id="day1" class="day">Day2</p>
-          <img src="#" class="weekly-icon">
+          <img src="#" class="weekly-icon" />
           <p class="weekly-temp">Temp</p>
         </div>
         <div class="day-forecast-card">
           <p id="day2" class="day">Day3</p>
-          <img src="#" class="weekly-icon">
+          <img src="#" class="weekly-icon" />
           <p class="weekly-temp">Temp</p>
         </div>
         <div class="day-forecast-card">
           <p id="day3" class="day">Day4</p>
-          <img src="#" class="weekly-icon">
+          <img src="#" class="weekly-icon" />
           <p class="weekly-temp">Temp</p>
         </div>
         <div class="day-forecast-card">
           <p id="day4" class="day">Day5</p>
-          <img src="#" class="weekly-icon">
+          <img src="#" class="weekly-icon" />
           <p class="weekly-temp">Temp</p>
         </div>
         <div class="day-forecast-card">
           <p id="day5" class="day">Day6</p>
-          <img src="#" class="weekly-icon">
+          <img src="#" class="weekly-icon" />
           <p class="weekly-temp">Temp</p>
         </div>
         <div class="day-forecast-card">
           <p id="day6" class="day">Day7</p>
-          <img src="#" class="weekly-icon">
+          <img src="#" class="weekly-icon" />
           <p class="weekly-temp">Temp</p>
         </div>
         <div class="day-forecast-card">
           <p id="day7" class="day">Day8</p>
-          <img src="#" class="weekly-icon">
+          <img src="#" class="weekly-icon" />
           <p class="weekly-temp">Temp</p>
         </div>
         <div class="day-forecast-card">
           <p id="day8" class="day">Day9</p>
-          <img src="#" class="weekly-icon">
+          <img src="#" class="weekly-icon" />
           <p class="weekly-temp">Temp</p>
         </div>
       </div>
@@ -111,6 +115,22 @@
           <h3>UV Index</h3>
           <canvas id="uv-index-canvas"></canvas>
           <p id="uv-index">uv</p>
+        </div>
+        <div class="sun-container overview-container">
+          <h3>Sunrise & Sunset</h3>
+          <span>
+            <img
+              src="./imgs/icons8-sunrise-90.png"
+              alt="sunrise"
+            />
+            <p>Sunrise: </p>
+            <p id="sunrise-time">sunrise time</p>
+          </span>
+          <span>
+            <img src="./imgs/icons8-sunset-90.png" alt="sunset">
+            <p>Sunset: </p>
+            <p id="sunset-time">sunset time</p>
+          </span>
         </div>
       </div>
     </main>
