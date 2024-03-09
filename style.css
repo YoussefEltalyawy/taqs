@@ -147,16 +147,20 @@ main h2 {
   margin-top: .7rem;
 }
 
-.wind-status-container {
+/* .wind-status-container {
+
+} */
+
+.overview-container {
   position: relative;
   display: flex;
   flex-direction: column;
   background-color: var(--secondary-color);
-  width: 25rem;
-  height: 15rem;
   padding-top: 1rem;
   padding-left: 1.5rem;
   border-radius: 20px;
+  width: 20rem;
+  height: 15rem;
 }
 
 #wind-speed {
@@ -165,5 +169,20 @@ main h2 {
 }
 
 #degree-dir {
-  font-size: 5rem;
+  font-size: 4rem;
+}
+
+.today-overview-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.today-overview {
+  margin: 1rem 0;
+}
+
+#uv-index {
+  position: absolute;
+  right: 47%;
+  bottom: 1rem;
 }
