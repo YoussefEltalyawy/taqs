@@ -42,6 +42,8 @@ function formatWeatherJson(weatherDataJson) {
     windDegree: weatherDataJson.current.wind_degree,
     windDir: weatherDataJson.current.wind_dir,
     uv: weatherDataJson.current.uv,
+    sunrise: weatherDataJson.forecast.forecastday[0].astro.sunrise,
+    sunset: weatherDataJson.forecast.forecastday[0].astro.sunset,
     humidity: weatherDataJson.current.humidity,
     visibility: weatherDataJson.current.vis_km,
     feelslike: weatherDataJson.current.feelslike_c,

@@ -21,6 +21,9 @@ const windDegreeAndDir = document.querySelector("#degree-dir");
 
 const uvIndexP = document.querySelector("#uv-index");
 
+const sunriseP = document.querySelector("#sunrise-time");
+const sunsetP = document.querySelector("#sunset-time");
+
 export function updateUi(weatherData) {
   nameEl.textContent = weatherData.name;
   regionEl.textContent = `${weatherData.region}, `;
@@ -75,6 +78,8 @@ export function updateUi(weatherData) {
     weatherData.windDegree + "°" + weatherData.windDir;
 
   uvIndexP.textContent = weatherData.uv + " UV";
+  sunriseP.textContent = weatherData.sunrise;
+  sunsetP.textContent = weatherData.sunset;
 }
 
 export function updateHourlyGraph(weatherData) {
@@ -204,6 +209,5 @@ export function updateWeeklyForecast(weatherData) {
 function convertDateToText(dateString) {
   const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const dateObject = daysOfWeek[new Date(dateString).getDay()];
-  console.log(dateObject);
   return dateObject;
 }

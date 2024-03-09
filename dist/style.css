@@ -191,3 +191,26 @@ main h2 {
   position: absolute;
   right: 20%;
 }
+
+span {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+span img {
+  width: 3rem;
+  height: 3rem;
+  color: #bf8000;
+}
+
+span p {
+  display: inline;
+  font-size: 1.5rem;
+}
+
+#sunrise-time,
+#sunset-time {
+  position: absolute;
+  right: 2rem;
+}
