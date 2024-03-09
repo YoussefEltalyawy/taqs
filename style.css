@@ -127,9 +127,20 @@ h4 {
   padding: 1.5rem;
   border-radius: 20px;
   background-color: var(--secondary-color);
-  margin-left: 1rem;
+  margin-right: .85rem;
 }
+
+.day-forecast-card  p{
+  font-size: 1.2rem;
+}
+
 .weekly-icon {
   width: 5rem;
   height: 5rem;
+  margin: 1rem 0;
+}
+
+main h2 {
+  font-size: 2rem;
+  font-weight: 400;
 }
