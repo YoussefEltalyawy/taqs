@@ -1,6 +1,7 @@
 import { updateUi } from "./ui";
 import { updateHourlyGraph } from "./ui";
 import { updateWeeklyForecast } from "./ui";
+import { updateUvgGauge } from "./ui";
 
 function getLocation() {
   const location = prompt("Please enter your location:");
@@ -23,6 +24,7 @@ async function getWeather() {
       weatherData
     );
     updateWeeklyForecast(weatherData);
+    updateUvgGauge(weatherData);
   } catch (error) {
     console.log(error);
   }

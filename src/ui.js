@@ -16,14 +16,12 @@ const dayEls = document.querySelectorAll(".day");
 const weeklyIcons = document.querySelectorAll(".weekly-icon");
 const weeklyTemps = document.querySelectorAll(".weekly-temp");
 
-const windSpeed = document.querySelector("#wind-speed")
+const windSpeed = document.querySelector("#wind-speed");
 const windDegreeAndDir = document.querySelector("#degree-dir");
 
 const uvIndexP = document.querySelector("#uv-index");
 
-export function updateUi(
-  weatherData,
-) {
+export function updateUi(weatherData) {
   nameEl.textContent = weatherData.name;
   regionEl.textContent = `${weatherData.region}, `;
   countryEl.textContent = weatherData.country;
@@ -71,16 +69,15 @@ export function updateUi(
   const year = date.getFullYear();
   date = `${day}, ${month} ${date.getDate()}, ${year}`;
   dateEl.textContent = date;
-  
-  windSpeed.textContent = weatherData.windSpeed + " km/h";
-  windDegreeAndDir.textContent = weatherData.windDegree + "°" + weatherData.windDir
 
-  uvIndexP.textContent = weatherData.uv + " UV"
+  windSpeed.textContent = weatherData.windSpeed + " km/h";
+  windDegreeAndDir.textContent =
+    weatherData.windDegree + "°" + weatherData.windDir;
+
+  uvIndexP.textContent = weatherData.uv + " UV";
 }
 
-export function updateHourlyGraph(
-  weatherData
-) {
+export function updateHourlyGraph(weatherData) {
   const canvas = document.getElementById("temp-chart").getContext("2d");
   const labels = ["", "", "", ""];
   const data = {
@@ -90,7 +87,12 @@ export function updateHourlyGraph(
         label: "Temperature (°C)",
         tension: 0.4,
         pointStyle: "circle",
-        data: [weatherData.morningTemp, weatherData.afternoonTemp, weatherData.eveningTemp, weatherData.nightTemp],
+        data: [
+          weatherData.morningTemp,
+          weatherData.afternoonTemp,
+          weatherData.eveningTemp,
+          weatherData.nightTemp,
+        ],
         borderColor: "#bf8000", // Red line
       },
     ],
@@ -124,6 +126,42 @@ export function updateHourlyGraph(
   });
 }
 
+export function updateUvgGauge(weatherData) {
+  const ctx = document.querySelector("#uv-index-canvas").getContext("2d");
+  const value = weatherData.uv;
+  const guageChart = new Chart(ctx, {
+    type: "doughnut",
+    data: {
+      datasets: [
+        {
+          data: [value, 12 - value],
+          backgroundColor: ["#bf8000", "#5f481d"],
+          borderWidth: 0
+        },
+      ],
+    },
+    options: {
+      cutoutPercentage: 0, // Adjust for gauge thickness
+      rotation: 270, // Start at bottom
+      circumference: 180, // Half circle
+      legend: {
+        display: false // Hide legend
+      },
+      ticks: {
+        display: true, // Hide default ticks
+        min: 0,
+        max: 11,
+        stepSize: 1,
+      },
+      fontColor: "#fff",
+      animation: {
+        animateRotate: true, // Disable rotation animation
+        animateScale: false  // Enable scale animation (optional)
+      }
+    },
+  });
+}
+
 export function updateWeeklyForecast(weatherData) {
   for (let i = 0; i < dayEls.length; i++) {
     const formatedDate = convertDateToText(weatherData.days[i].date);
@@ -144,10 +182,12 @@ export function updateWeeklyForecast(weatherData) {
           "https://img.icons8.com/3d-fluency/188/private-cloud-storage";
         break;
       case weatherData.days[i].condition.toLowerCase().includes("rain"):
-        weatherData.days[i].conditionIcon = "https://img.icons8.com/3d-fluency/188/storm";
+        weatherData.days[i].conditionIcon =
+          "https://img.icons8.com/3d-fluency/188/storm";
         break;
       case weatherData.days[i].condition.toLowerCase().includes("snow"):
-        weatherData.days[i].conditionIcon = "https://img.icons8.com/3d-fluency/188/snow";
+        weatherData.days[i].conditionIcon =
+          "https://img.icons8.com/3d-fluency/188/snow";
         break;
       case weatherData.days[i].condition.toLowerCase().includes("sun"):
         weatherData.days[i].conditionIcon =
@@ -156,21 +196,13 @@ export function updateWeeklyForecast(weatherData) {
         weatherData.days[i].conditionIcon =
           "https://img.icons8.com/3d-fluency/188/sun.png";
     }
-    weeklyIcons[i].src = weatherData.days[i].conditionIcon
+    weeklyIcons[i].src = weatherData.days[i].conditionIcon;
     weeklyTemps[i].textContent = weatherData.days[i].temp + "°";
   }
 }
 
 function convertDateToText(dateString) {
-  const daysOfWeek = [
-    "Sun",
-    "Mon",
-    "Tue",
-    "Wed",
-    "Thu",
-    "Fri",
-    "Sat",
-  ];
+  const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const dateObject = daysOfWeek[new Date(dateString).getDay()];
   console.log(dateObject);
   return dateObject;

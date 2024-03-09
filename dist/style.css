@@ -159,7 +159,7 @@ main h2 {
   padding-top: 1rem;
   padding-left: 1.5rem;
   border-radius: 20px;
-  width: 20rem;
+  width: 23rem;
   height: 15rem;
 }
 
@@ -185,4 +185,9 @@ main h2 {
   position: absolute;
   right: 47%;
   bottom: 1rem;
+}
+
+#uv-index-canvas {
+  position: absolute;
+  right: 20%;
 }
