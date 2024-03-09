@@ -11,7 +11,7 @@ async function getWeather() {
   const location = getLocation();
   try {
     const response = await fetch(
-      `https://api.weatherapi.com/v1/forecast.json?key=b40bbce6ac554f4fbf1142551240203&q=${location}&days=9`,
+      `https://api.weatherapi.com/v1/forecast.json?key=b40bbce6ac554f4fbf1142551240203&q=${location}&days=10`,
       { mode: "cors" }
     );
     const weatherDataJson = await response.json();
@@ -88,6 +88,18 @@ function formatWeatherJson(weatherDataJson) {
         condition: weatherDataJson.forecast.forecastday[7].day.condition.text,
         conditionIcon: null,
       },
+      7: {
+        date: weatherDataJson.forecast.forecastday[8].date,
+        temp: weatherDataJson.forecast.forecastday[8].day.avgtemp_c,
+        condition: weatherDataJson.forecast.forecastday[8].day.condition.text,
+        conditionIcon: null,
+      },
+      8: {
+        date: weatherDataJson.forecast.forecastday[9].date,
+        temp: weatherDataJson.forecast.forecastday[9].day.avgtemp_c,
+        condition: weatherDataJson.forecast.forecastday[9].day.condition.text,
+        conditionIcon: null,
+      }
     },
   };
   return weatherData;
