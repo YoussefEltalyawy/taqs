@@ -37,7 +37,6 @@ async function getWeather() {
       resetUi();
       hourlyChart.destroy();
       guageChart.destroy();
-      getWeather();
     })
   } catch (error) {
     console.log(error);
@@ -127,3 +126,6 @@ function formatWeatherJson(weatherDataJson) {
   return weatherData;
 }
 getWeather();
+searchBtn.addEventListener('click', () => {
+  getWeather();
+});
