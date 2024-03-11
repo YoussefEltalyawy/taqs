@@ -24,6 +24,10 @@ const uvIndexP = document.querySelector("#uv-index");
 const sunriseP = document.querySelector("#sunrise-time");
 const sunsetP = document.querySelector("#sunset-time");
 
+const humidityP = document.querySelector("#humidity");
+const visibilityP = document.querySelector("#visibility");
+const feelsLikeP = document.querySelector("#feels-like");
+
 export function updateUi(weatherData) {
   nameEl.textContent = weatherData.name;
   regionEl.textContent = `${weatherData.region}, `;
@@ -80,6 +84,10 @@ export function updateUi(weatherData) {
   uvIndexP.textContent = weatherData.uv + " UV";
   sunriseP.textContent = weatherData.sunrise;
   sunsetP.textContent = weatherData.sunset;
+
+  humidityP.textContent = weatherData.humidity + "%";
+  visibilityP.textContent = weatherData.visibility + "km";
+  feelsLikeP.textContent = weatherData.feelslike + "° C"; 
 }
 
 export function updateHourlyGraph(weatherData) {
@@ -115,7 +123,6 @@ export function updateHourlyGraph(weatherData) {
         y: {
           grid: {
             display: false,
-            // drawOnChartArea: false
           },
           ticks: {
             display: false,
@@ -129,7 +136,6 @@ export function updateHourlyGraph(weatherData) {
       },
     },
   });
-  console.log(myChart);
   return myChart;
 }
 

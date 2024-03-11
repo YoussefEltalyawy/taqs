@@ -128,10 +128,10 @@ h4 {
   padding: 1.5rem;
   border-radius: 20px;
   background-color: var(--secondary-color);
-  margin-right: .85rem;
+  margin-right: 0.85rem;
 }
 
-.day-forecast-card  p{
+.day-forecast-card p {
   font-size: 1.2rem;
 }
 
@@ -144,7 +144,7 @@ h4 {
 main h2 {
   font-size: 2rem;
   font-weight: 400;
-  margin-top: .7rem;
+  margin-top: 0.7rem;
 }
 
 /* .wind-status-container {
@@ -159,8 +159,21 @@ main h2 {
   padding-top: 1rem;
   padding-left: 1.5rem;
   border-radius: 20px;
-  width: 23rem;
+  width: 25rem;
   height: 15rem;
+  margin-bottom: 2rem;
+}
+
+.overview-container-small {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--secondary-color);
+  padding-top: 1rem;
+  padding-left: 1.5rem;
+  border-radius: 20px;
+  width: 25rem;
+  height: 12rem;
 }
 
 #wind-speed {
@@ -189,7 +202,12 @@ main h2 {
 
 #uv-index-canvas {
   position: absolute;
-  right: 20%;
+  right: 23%;
+}
+.ab {
+  position: absolute;
+  bottom: 1rem;
+  font-size: 1.5rem;
 }
 
 span {
@@ -213,4 +231,12 @@ span p {
 #sunset-time {
   position: absolute;
   right: 2rem;
+}
+
+.overview-container-small img {
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  bottom: 1.2rem;
+  right: 1.7rem
 }

@@ -10,7 +10,6 @@ function getLocation() {
   let location;
   if(!location) {
     location = prompt("Please enter your location:");
-    console.log("called")
   }
   return location;
 }
@@ -30,21 +29,16 @@ async function getWeather() {
     const hourlyChart = updateHourlyGraph(
       weatherData
     );
-    console.log(hourlyChart)
     updateWeeklyForecast(weatherData);
     const guageChart = updateUvgGauge(weatherData);
     searchBtn.addEventListener("click",() => {
-      resetUi();
       hourlyChart.destroy();
       guageChart.destroy();
     })
   } catch (error) {
-    console.log(error);
   }
 }
 function formatWeatherJson(weatherDataJson) {
-  console.log(weatherDataJson);
-  console.log(weatherDataJson.location)
   const weatherData = {
     name: weatherDataJson.location.name,
     region: weatherDataJson.location.region,
