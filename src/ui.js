@@ -129,6 +129,8 @@ export function updateHourlyGraph(weatherData) {
       },
     },
   });
+  console.log(myChart);
+  return myChart;
 }
 
 export function updateUvgGauge(weatherData) {
@@ -165,6 +167,7 @@ export function updateUvgGauge(weatherData) {
       }
     },
   });
+  return guageChart;
 }
 
 export function updateWeeklyForecast(weatherData) {
@@ -210,4 +213,34 @@ function convertDateToText(dateString) {
   const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const dateObject = daysOfWeek[new Date(dateString).getDay()];
   return dateObject;
+}
+
+export function resetUi() {
+  nameEl.textContent = "";
+  regionEl.textContent = "";
+  countryEl.textContent = "";
+  tempEl.textContent = "";
+  conditionTextEl.textContent = "";
+  condtiionIconEl.src = "#"
+
+  morningTempEl.textContent = "";
+  afternoonTempEl.textContent = "";
+  eveningTempEl.textContent = "";
+  nightTempEl.textContent = "";
+
+  dateEl.textContent = "";
+  dayEls.forEach((element) => {
+    element.textContent = "";
+  })
+  weeklyIcons.forEach((icon) => {
+    icon.src = "#"
+  })
+  weeklyTemps.forEach((temp) => {
+    temp.textContent = "";
+  })
+  windSpeed.textContent = "";
+  windDegreeAndDir.textContent = "";
+  uvIndexP.textContent = "";
+  sunriseP.textContent = "";
+  sunsetP.textContent = "";
 }
